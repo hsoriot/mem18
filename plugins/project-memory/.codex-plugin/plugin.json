@@ -1,0 +1,37 @@
+{
+  "name": "project-memory",
+  "version": "0.1.0",
+  "description": "Shared project memory skill for cross-agent task context and handoff.",
+  "author": {
+    "name": "hsoriot",
+    "email": "",
+    "url": "https://github.com/hsoriot"
+  },
+  "homepage": "https://github.com/hsoriot/mem18",
+  "repository": "https://github.com/hsoriot/mem18",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "memory"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Project Memory",
+    "shortDescription": "Shared project memory for CLI agents",
+    "longDescription": "Provides a shared project-memory skill for reading project context, updating current status, recording key decisions, and generating handoff summaries from a common cross-agent memory root.",
+    "developerName": "hsoriot",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/hsoriot/mem18",
+    "defaultPrompt": [
+      "Use project-memory to continue project skills-project-memory.",
+      "Use project-memory for project billing-refactor-lab.",
+      "Use project-memory to read project memory for the current project.",
+      "Use project-memory to update the current status for this project.",
+      "Use project-memory to generate a handoff summary for this project."
+    ]
+  }
+}
