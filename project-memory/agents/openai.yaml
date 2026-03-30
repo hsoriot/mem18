@@ -1,4 +1,0 @@
-interface:
-  display_name: "Project Memory"
-  short_description: "Maintain per-project working memory"
-  default_prompt: "Use $project-memory to initialize, read, or update project memory for the current project."
