@@ -1,0 +1,8 @@
+project_name: "<user-defined project name>"
+project_slug: "<normalized-project-slug>"
+memory_version: "v1"
+storage_root: "~/.agent-memory/project-memory"
+repo_path: "<optional current repo path>"
+git_remote: "<optional current git remote>"
+created_at: "<ISO-8601 timestamp>"
+updated_at: "<ISO-8601 timestamp>"

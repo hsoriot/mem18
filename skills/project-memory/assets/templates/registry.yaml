@@ -1,0 +1,7 @@
+version: "v1"
+projects:
+  - project_name: "<user-defined project name>"
+    project_slug: "<normalized-project-slug>"
+    repo_path: "<optional current repo path>"
+    git_remote: "<optional current git remote>"
+    last_updated: "<ISO-8601 timestamp>"
