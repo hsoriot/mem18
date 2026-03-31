@@ -51,12 +51,7 @@ Read the exact file structures in:
 - `references/actions.md` for the minimal action set and output format
 - `references/usage.md` for the day-to-day calling convention
 
-Use the templates in:
-
-- `assets/templates/project.md`
-- `assets/templates/current.md`
-- `assets/templates/decisions.md`
-- `assets/templates/meta.yaml`
+When creating new memory files, follow the schemas defined in `references/schema.md`.
 
 ## Required Workflow
 
