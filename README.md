@@ -1,6 +1,20 @@
-# Project Memory
+# Agent Skills
+
+一组帮助 AI agent 在复杂任务中更高效工作的 skill。
+
+## Skills
+
+### project-memory
 
 让 AI agent 在复杂开发任务中记住关键决策和当前进度，并能将完整上下文交接给新的 agent 继续工作。
+
+### req-decompose
+
+帮助用户将模糊的一句话需求，通过结构化的迭代问询，逐步拆解为一份完整的、可实施的需求文档。
+
+---
+
+## project-memory 详细说明
 
 ## 解决什么问题
 
@@ -84,4 +98,97 @@ skills/project-memory/
     schema.md                     # 文件结构与模板定义
     actions.md                    # 操作定义与输出格式
     usage.md                      # 日常使用约定
+```
+
+---
+
+## req-decompose 详细说明
+
+## 解决什么问题
+
+用户心中有一个想法或需求，但往往只能用一句话描述。直接让 AI 从这句话生成代码，结果通常偏离用户真实意图。原因在于：
+
+- 用户自己也没有想清楚所有细节
+- 一句话包含太多隐含假设，AI 无法猜对
+- 需求中的歧义只有通过反复问询才能消除
+
+`req-decompose` 通过结构化的迭代问询流程解决这个问题。agent 按维度（目标、用户、功能、流程、数据、约束等）逐步提问，每次只问 1-3 个问题，帮助用户把模糊想法变成一份完整的、可实施的需求文档。
+
+## 核心特点
+
+- **迭代式提问**：按 9 个维度分阶段提问，而不是一次性问一大堆问题
+- **提议而非追问**：agent 主动提出具体方案让用户确认，比开放式提问更高效
+- **渐进式文档**：每轮问答后可以预览当前需求草稿，看到文档逐步成型
+- **可中断恢复**：会话状态持久化存储，可以跨会话继续拆解
+- **标记假设**：agent 做出的假设会明确标记，用户可以在最终审查时修改
+
+## 9 个提问维度
+
+| 阶段 | 内容 |
+|------|------|
+| 1. 目标与背景 | 为什么要做？解决什么问题？ |
+| 2. 用户与角色 | 谁在用？不同角色有什么差异？ |
+| 3. 核心功能 | 必须有哪些能力？ |
+| 4. 用户流程 | 用户怎么一步步操作？ |
+| 5. 数据与状态 | 涉及什么数据？数据之间什么关系？ |
+| 6. 非功能需求 | 性能、安全、兼容性目标？ |
+| 7. 约束与依赖 | 技术限制、第三方集成、时间线？ |
+| 8. 边界与非目标 | 什么不做？ |
+| 9. 验收标准 | 怎么算做完了？ |
+
+## 安装
+
+全局安装（推荐）：
+
+```bash
+npx skills add hsoriot/mem18 --skill req-decompose -g
+```
+
+仅当前项目安装：
+
+```bash
+npx skills add hsoriot/mem18 --skill req-decompose
+```
+
+## 使用方式
+
+开始拆解新需求：
+
+```
+Use req-decompose for 我想做一个用户权限管理系统.
+```
+
+继续已有的拆解：
+
+```
+Continue decomposing requirement for project user-permission.
+```
+
+查看当前草稿：
+
+```
+Show me the current draft for project user-permission.
+```
+
+agent 会按维度逐步提问，每轮展示进度和已收集的信息，最终生成结构化需求文档。
+
+## 输出文件
+
+需求文档存储在 `~/.agent-memory/req-decompose/projects/<project-slug>/` 下：
+
+| 文件 | 内容 |
+|------|------|
+| `requirement.md` | 结构化需求文档（最终产物） |
+| `session.yaml` | 问询会话状态（支持中断恢复） |
+| `meta.yaml` | 项目元数据与时间戳 |
+
+## 仓库结构
+
+```
+skills/req-decompose/
+  SKILL.md                        # skill 定义（agent 读取的入口）
+  references/                     # 详细参考文档
+    schema.md                     # 需求文档模板与会话文件格式
+    workflow.md                   # 迭代提问框架与阶段转换规则
+    usage.md                      # 使用约定与触发示例
 ```
